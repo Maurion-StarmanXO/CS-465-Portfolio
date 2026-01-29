@@ -1,0 +1,7 @@
+router.get('/', (req, res) => {
+  res.render('index', { title: 'Travlr Getaways' });
+});
+
+router.get('/travel', (req, res) => {
+  res.render('travel', { title: 'Travel' });
+});
