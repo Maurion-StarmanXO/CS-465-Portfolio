@@ -1,0 +1,37 @@
+<div class="page">
+  <header class="toolbar">
+    <h1 class="title">Travlr Getaways Admin</h1>
+
+    <a class="btn" routerLink="/add">Add Trip</a>
+  </header>
+
+  <section class="cards" *ngIf="trips && trips.length > 0; else empty">
+    <article class="card" *ngFor="let trip of trips">
+      <h2 class="card-title">{{ trip.name }}</h2>
+
+      <img
+        class="card-img"
+        [src]="imageUrl(trip.image)"
+        [alt]="trip.name"
+        loading="lazy"
+      />
+
+      <div class="card-meta">{{ trip.resort }}</div>
+
+      <div class="card-meta">{{ trip.length }} only</div>
+
+      <div class="card-price">
+        {{ trip.perPerson | number:'1.0-0' }}.00 per person
+      </div>
+
+      <p class="card-desc">
+        {{ trip.description }}
+      </p>
+    </article>
+  </section>
+
+  <ng-template #empty>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    <p *ngIf="!errorMessage">No trips found.</p>
+  </ng-template>
+</div>

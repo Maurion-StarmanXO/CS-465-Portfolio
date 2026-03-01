@@ -1,5 +1,3 @@
-const passport = require("passport");
-
 /**
  * Travlr (Express) server
  * - Serves:
@@ -21,7 +19,6 @@ require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 require("./app_api/config/passport");
 
 const app = express();
-app.use(passport.initialize());
 const PORT = process.env.PORT || 3000;
 
 /* ----------------------------- middleware ----------------------------- */
@@ -38,6 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(passport.initialize());
 
 app.use(express.static(path.join(__dirname, "public")));
 

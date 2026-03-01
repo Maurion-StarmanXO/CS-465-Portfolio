@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 
-// Define the trip schema
 const tripSchema = new mongoose.Schema({
-  code: { type: String, required: true, index: true },
-  name: { type: String, required: true, index: true },
-  length: { type: String, required: true },
-  start: { type: Date, required: true },
-  resort: { type: String, required: true },
-  perPerson: { type: String, required: true },
-  image: { type: String, required: true },
+  code: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  length: { type: String, required: true },        // e.g. "4 nights / 5 days"
+  start: { type: Date, required: true },           // ISO date
+  resort: { type: String, required: true },        // e.g. "Gale Reef"
+  perPerson: { type: Number, required: true },     // e.g. 799
+  image: { type: String, required: true },         // e.g. "reef1.jpg"
   description: { type: String, required: true }
 });
 
-const Trip = mongoose.model('trips', tripSchema);
-module.exports = Trip;
+module.exports = mongoose.model('Trip', tripSchema);
+

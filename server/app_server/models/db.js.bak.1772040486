@@ -17,7 +17,8 @@ mongoose.connection.on('disconnected', () => {
 });
 
 process.on('SIGINT', () => {
-  mongoose.connection.close();
+  mongoose.connection.close(() => {
     console.log('Mongoose disconnected through app termination');
     process.exit(0);
+  });
 });
